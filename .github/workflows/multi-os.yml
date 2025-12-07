@@ -36,26 +36,39 @@ jobs:
       - name: 🧪 Ejecutar tests
         run: npm test
       
-      # Información específica del SO (comandos diferentes según el OS)
-      - name: 💻 Información del Sistema Operativo
-        shell: bash
+      # Información general del runner
+      - name: 💻 Información general del Sistema Operativo
         run: |
           echo "===================================="
-          echo "Sistema: ${{ matrix.os }}"
-          echo "Node.js: ${{ matrix.node-version }}"
-          echo "Runner OS: $RUNNER_OS"
+          echo "Sistema (matrix): ${{ matrix.os }}"
+          echo "Node.js (matrix): ${{ matrix.node-version }}"
+          echo "Runner OS real:   $RUNNER_OS"
           echo "===================================="
-          if [ "$RUNNER_OS" == "Linux" ]; then
-            echo "Ejecutando en Linux"
-            uname -a
-            cat /etc/os-release
-          elif [ "$RUNNER_OS" == "Windows" ]; then
-            echo "Ejecutando en Windows"
-            systeminfo | findstr /C:"OS"
-          elif [ "$RUNNER_OS" == "macOS" ]; then
-            echo "Ejecutando en macOS"
-            sw_vers
-          fi
+
+      # Info específica según el SO
+      - name: 🐧 Info Linux
+        if: runner.os == 'Linux'
+        run: |
+          echo "Ejecutando en Linux"
+          uname -a
+          cat /etc/os-release
+          echo "===================================="
+
+      - name: 🪟 Info Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Write-Host "Ejecutando en Windows"
+          Write-Host "===================================="
+          Write-Host "Información del sistema:"
+          systeminfo | findstr /C:"OS"
+          Write-Host "===================================="
+
+      - name: 🍏 Info macOS
+        if: runner.os == 'macOS'
+        run: |
+          echo "Ejecutando en macOS"
+          sw_vers
           echo "===================================="
 
   # Job que solo se ejecuta en Linux para comparar
