@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      
       # Step 1: Hacer checkout del código del repositorio
       - name: 📥 Checkout del código
         uses: actions/checkout@v3
@@ -29,6 +30,9 @@ jobs:
       # Step 3: Instalar dependencias (si las hay)
       - name: 📦 Instalar dependencias
         run: npm install
+      # Step 3.5: ESLint dentro del CI
+      - name: 🔍 Linting (ESLint)
+        run: npm run lint
       
       # Step 4: Ejecutar los tests
       - name: 🧪 Ejecutar tests
