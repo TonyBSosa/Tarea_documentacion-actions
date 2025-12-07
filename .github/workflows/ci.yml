@@ -47,6 +47,30 @@ jobs:
           echo "Subiendo build a servidor ficticio..."
           echo "✅ Deploy simulado completado correctamente."
 
+      - name: 📝 Generar archivo de log de CI
+        run: |
+          echo "====================================" > ci-log.txt
+          echo "      LOG DE EJECUCIÓN CI/CD        " >> ci-log.txt
+          echo "====================================" >> ci-log.txt
+          echo "Fecha: $(date)" >> ci-log.txt
+          echo "Commit: $GITHUB_SHA" >> ci-log.txt
+          echo "Rama:  $GITHUB_REF" >> ci-log.txt
+          echo "Runner OS: $RUNNER_OS" >> ci-log.txt
+          echo "------------------------------------" >> ci-log.txt
+          echo "Versión de Node:" >> ci-log.txt
+          node -v >> ci-log.txt
+          echo "------------------------------------" >> ci-log.txt
+          echo "Dependencias instaladas (nivel 0):" >> ci-log.txt
+          npm list --depth=0 >> ci-log.txt || echo "No se pudieron listar dependencias" >> ci-log.txt
+          echo "====================================" >> ci-log.txt
+      - name: ⬆️ Subir log como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-log
+          path: ci-log.txt
+          retention-days: 7
+
+        
       
       # Step 5: Mostrar información del sistema
       - name: 💻 Información del Sistema Operativo
