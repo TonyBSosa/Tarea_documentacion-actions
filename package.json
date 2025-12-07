@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Proyecto demo para aprender CI/CD con GitHub Actions - Clase de Sistemas Operativos",
   "main": "index.js",
-  "scripts": {
-    "test": "node test.js",
-    "start": "node index.js",
-    "lint": "eslint ."
-  },
+"scripts": {
+  "test": "node test.js",
+  "start": "node index.js",
+  "lint": "node node_modules/eslint/bin/eslint.js ."
+}
+,
   "keywords": [
     "ci-cd",
     "github-actions",
