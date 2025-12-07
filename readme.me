@@ -1,0 +1,29 @@
+## 🧠 Preguntas para Reflexionar
+
+### 1. ¿Cómo se relacionan los jobs de GitHub Actions con los procesos en un SO?
+Los jobs funcionan como procesos independientes dentro de una máquina virtual, cada uno con su propio entorno y recursos, similar a cómo un SO maneja procesos aislados.
+
+---
+
+### 2. ¿Qué pasa con el filesystem cuando termina un job?
+El filesystem se elimina completamente al finalizar un job. Nada persiste a menos que se usen herramientas como artifacts o caching.
+
+---
+
+### 3. ¿Por qué es importante testear en múltiples sistemas operativos?
+Porque el código puede comportarse diferente según el SO. Probar en varios ambientes ayuda a detectar errores específicos y asegurar compatibilidad real.
+
+---
+
+### 4. ¿Cómo maneja GitHub Actions la concurrencia de workflows?
+GitHub Actions ejecuta workflows en paralelo cuando hay runners disponibles. Cada workflow corre de manera aislada sin interferir con los demás.
+
+---
+
+### 5. ¿Qué recursos del sistema usa un runner?
+Un runner utiliza CPU, RAM, disco y red de la máquina virtual asignada. Cada sistema operativo tiene su propia configuración de recursos.
+
+---
+
+### 6. ¿Cómo se comunican los procesos en un pipeline de CI/CD?
+Los jobs se comunican mediante artifacts, variables de entorno y outputs entre ellos. No comparten memoria directa; solo la información que se pasa explícitamente.
