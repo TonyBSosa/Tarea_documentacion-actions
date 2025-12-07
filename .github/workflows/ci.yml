@@ -85,7 +85,7 @@ jobs:
       
       # Guardar el código como artifact para poder descargarlo después
       - name: 📤 Subir artifact del build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: aplicacion-build
           path: |
