@@ -37,6 +37,16 @@ jobs:
       # Step 4: Ejecutar los tests
       - name: 🧪 Ejecutar tests
         run: npm test
+      # Step 4: Ejecutar los tests
+      - name: 🚀 Deploy simulado a producción (solo en main)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "Iniciando deploy simulado..."
+          echo "Rama actual: $GITHUB_REF"
+          echo "Compilando assets para producción..."
+          echo "Subiendo build a servidor ficticio..."
+          echo "✅ Deploy simulado completado correctamente."
+
       
       # Step 5: Mostrar información del sistema
       - name: 💻 Información del Sistema Operativo
